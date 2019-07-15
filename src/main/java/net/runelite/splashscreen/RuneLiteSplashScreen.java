@@ -28,6 +28,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,16 +43,11 @@ import net.runelite.splashscreen.util.LinkBrowser;
 public class RuneLiteSplashScreen extends JFrame
 {
 	public static final Dimension FRAME_SIZE = new Dimension(200, 275);
-
-	private static final BufferedImage LOGO;
-
-	static
-	{
-		LOGO = SwingUtil.loadImage("runelite.png");
-	}
+	private static final BufferedImage LOGO = SwingUtil.loadImage("runelite.png");
 
 	@Getter
 	private final SplashScreenPanel panel;
+	private final File logFile;
 
 	@Setter
 	private long fetchBytes;
@@ -62,8 +58,9 @@ public class RuneLiteSplashScreen extends JFrame
 	@Setter
 	private float progressEndingPercent = 100f;
 
-	public RuneLiteSplashScreen(final String versionText)
+	public RuneLiteSplashScreen(final File logFile, final String versionText)
 	{
+		this.logFile = logFile;
 		this.setTitle("RuneLite");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(FRAME_SIZE);
@@ -151,6 +148,24 @@ public class RuneLiteSplashScreen extends JFrame
 		if (result == JOptionPane.YES_OPTION)
 		{
 			LinkBrowser.browse("https://runelite.net");
+		}
+	}
+
+	public void errorMessage(final String message)
+	{
+		final Object[] buttons = new Object[]{"View log file", "Close client"};
+		final int result = JOptionPane.showOptionDialog(panel,
+			message,
+			"RuneLite Error",
+			JOptionPane.YES_NO_OPTION,
+			JOptionPane.ERROR_MESSAGE,
+			null,
+			buttons,
+			buttons[1]);
+
+		if (result == JOptionPane.YES_OPTION)
+		{
+			LinkBrowser.openLocalFile(logFile);
 		}
 	}
 
