@@ -29,6 +29,7 @@ import java.awt.Dimension;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -131,12 +132,17 @@ public class RuneLiteSplashScreen extends JFrame
 
 	public void invalidVersion()
 	{
+		invalidVersion(panel);
+	}
+
+	public static void invalidVersion(final JComponent parent)
+	{
 		final String message = "<html><div style='text-align: center;'>" +
 			"Your RuneLite launcher version is outdated<br/>" +
 			"Please visit runelite.net to download the updated version</div></html>";
 		final Object[] buttons = new Object[]{"Visit runelite.net", "Close client"};
 
-		final int result = JOptionPane.showOptionDialog(panel,
+		final int result = JOptionPane.showOptionDialog(parent,
 			message,
 			"Outdated launcher",
 			JOptionPane.YES_NO_OPTION,
@@ -153,9 +159,14 @@ public class RuneLiteSplashScreen extends JFrame
 
 	public void errorMessage(final String message)
 	{
+		errorMessage(panel, message, logFile);
+	}
+
+	public static void errorMessage(final JComponent parent, final String msg, final File logFile)
+	{
 		final Object[] buttons = new Object[]{"View log file", "Close client"};
-		final int result = JOptionPane.showOptionDialog(panel,
-			message,
+		final int result = JOptionPane.showOptionDialog(parent,
+			msg,
 			"RuneLite Error",
 			JOptionPane.YES_NO_OPTION,
 			JOptionPane.ERROR_MESSAGE,
