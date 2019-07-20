@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LinkBrowser
 {
-	private static boolean shouldAttemptXdg = OSType.getOSType() == OSType.Linux;
+	private static boolean shouldAttemptXdg = System.getProperty("os.name", "generic").toLowerCase().contains("nux");
 
 	/**
 	 * Tries to navigate to specified URL in browser. In case operation fails, displays message box with message
@@ -147,7 +147,7 @@ public class LinkBrowser
 			return true;
 		}
 
-		showMessageBox("Unable to open log file. Press 'OK' and the file parth will be copied to your clipboard", file.getAbsolutePath());
+		showMessageBox("Unable to open log file. Press 'OK' and the file path will be copied to your clipboard", file.getAbsolutePath());
 		return false;
 	}
 

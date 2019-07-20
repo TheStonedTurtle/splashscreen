@@ -43,7 +43,7 @@ import net.runelite.splashscreen.util.LinkBrowser;
 @Slf4j
 public class RuneLiteSplashScreen extends JFrame
 {
-	public static final Dimension FRAME_SIZE = new Dimension(200, 275);
+	static final Dimension FRAME_SIZE = new Dimension(200, 275);
 	private static final BufferedImage LOGO = SwingUtil.loadImage("runelite.png");
 
 	@Getter

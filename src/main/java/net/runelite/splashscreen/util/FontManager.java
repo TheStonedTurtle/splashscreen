@@ -29,10 +29,13 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
+import lombok.Getter;
 
 public class FontManager
 {
+	@Getter
 	private static final Font runescapeFont;
+	@Getter
 	private static final Font runescapeSmallFont;
 
 	static
@@ -67,15 +70,5 @@ public class FontManager
 		{
 			throw new RuntimeException("Font file not found.", ex);
 		}
-	}
-
-	public static Font getRunescapeFont()
-	{
-		return runescapeFont;
-	}
-
-	public static Font getRunescapeSmallFont()
-	{
-		return runescapeSmallFont;
 	}
 }

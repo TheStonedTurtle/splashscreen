@@ -40,35 +40,30 @@ import net.runelite.splashscreen.RuneLiteSplashScreen;
 @Slf4j
 public class SwingUtil
 {
-	public static class ColorScheme
-	{
-		/* The orange color used for the branding's accents */
-		public static final Color BRAND_ORANGE = new Color(220, 138, 0);
-
-		/* The orange color used for the branding's accents, with lowered opacity */
-		public static final Color BRAND_ORANGE_TRANSPARENT = new Color(220, 138, 0, 120);
-
-		public static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
-	}
+	/* The orange color used for the branding's accents */
+	private static final Color BRAND_ORANGE = new Color(220, 138, 0);
+	/* The orange color used for the branding's accents, with lowered opacity */
+	private static final Color BRAND_ORANGE_TRANSPARENT = new Color(220, 138, 0, 120);
+	private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
 
 	/**
 	 * Safely sets Swing theme
 	 */
 	public static void setTheme()
 	{
-		UIManager.put("ProgressBar.background", ColorScheme.BRAND_ORANGE_TRANSPARENT.darker());
-		UIManager.put("ProgressBar.foreground", ColorScheme.BRAND_ORANGE);
-		UIManager.put("ProgressBar.selectionBackground", ColorScheme.BRAND_ORANGE);
+		UIManager.put("ProgressBar.background", BRAND_ORANGE_TRANSPARENT.darker());
+		UIManager.put("ProgressBar.foreground", BRAND_ORANGE);
+		UIManager.put("ProgressBar.selectionBackground", BRAND_ORANGE);
 		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 		UIManager.put("ProgressBar.border", new EmptyBorder(0, 0, 0, 0));
 		UIManager.put("ProgressBar.verticalSize", new Dimension(12, 10));
 		UIManager.put("ProgressBar.horizontalSize", new Dimension(10, 12));
 		UIManager.put("ProgressBarUI", BasicProgressBarUI.class.getName());
-		UIManager.put("Panel.background", ColorScheme.DARKER_GRAY_COLOR);
+		UIManager.put("Panel.background", DARKER_GRAY_COLOR);
 		UIManager.put("Panel.foreground", Color.WHITE);
-		UIManager.put("Label.background", ColorScheme.DARKER_GRAY_COLOR);
+		UIManager.put("Label.background", DARKER_GRAY_COLOR);
 		UIManager.put("Label.foreground", Color.WHITE);
-		UIManager.put("OptionPane.background", ColorScheme.DARKER_GRAY_COLOR);
+		UIManager.put("OptionPane.background", DARKER_GRAY_COLOR);
 		UIManager.put("OptionPane.messageForeground", Color.WHITE);
 
 		// Set default font to RuneScape UF

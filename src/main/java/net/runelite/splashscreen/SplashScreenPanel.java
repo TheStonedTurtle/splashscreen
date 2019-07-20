@@ -40,23 +40,18 @@ import net.runelite.splashscreen.util.FontManager;
 import net.runelite.splashscreen.util.SwingUtil;
 
 @Getter
-public class SplashScreenPanel extends JPanel
+class SplashScreenPanel extends JPanel
 {
-	private static final BufferedImage TRANSPARENT_LOGO;
-	static
-	{
-		TRANSPARENT_LOGO = SwingUtil.loadImage("runelite_transparent.png");
-	}
+	private static final BufferedImage TRANSPARENT_LOGO = SwingUtil.loadImage("runelite_transparent.png");
 
 	private final JProgressBar bar = new JProgressBar(0, 100);
 	private final JLabel messageLabel = new JLabel("Loading...");
 	private final JLabel subMessageLabel = new JLabel();
 
-	public SplashScreenPanel(final String versionString)
+	SplashScreenPanel(final String versionString)
 	{
 		this.setLayout(new GridBagLayout());
 		this.setPreferredSize(RuneLiteSplashScreen.FRAME_SIZE);
-		this.setBackground(SwingUtil.ColorScheme.DARKER_GRAY_COLOR);
 
 		final GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -67,7 +62,11 @@ public class SplashScreenPanel extends JPanel
 		c.ipady = 5;
 
 		// Logo
-		final ImageIcon transparentLogo = new ImageIcon(TRANSPARENT_LOGO.getScaledInstance(128, 128, Image.SCALE_SMOOTH));
+		final ImageIcon transparentLogo = new ImageIcon();
+		if (TRANSPARENT_LOGO != null)
+		{
+			transparentLogo.setImage(TRANSPARENT_LOGO.getScaledInstance(128, 128, Image.SCALE_SMOOTH));
+		}
 		final JLabel logo = new JLabel(transparentLogo);
 		logo.setBorder(new EmptyBorder(35, 0, 0, 0));
 		this.add(logo, c);
