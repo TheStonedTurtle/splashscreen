@@ -140,7 +140,7 @@ public class RuneLiteSplashScreen extends JFrame
 		final String message = "<html><div style='text-align: center;'>" +
 			"Your RuneLite launcher version is outdated<br/>" +
 			"Please visit runelite.net to download the updated version</div></html>";
-		final Object[] buttons = new Object[]{"Visit runelite.net", "Close client"};
+		final Object[] buttons = new Object[]{"Visit runelite.net", "Okay"};
 
 		final int result = JOptionPane.showOptionDialog(parent,
 			message,
@@ -164,7 +164,7 @@ public class RuneLiteSplashScreen extends JFrame
 
 	public static void errorMessage(final JComponent parent, final String msg, final File logFile)
 	{
-		final Object[] buttons = new Object[]{"View log file", "Close client"};
+		final Object[] buttons = new Object[]{"View log file", "Okay"};
 		final int result = JOptionPane.showOptionDialog(parent,
 			msg,
 			"RuneLite Error",
