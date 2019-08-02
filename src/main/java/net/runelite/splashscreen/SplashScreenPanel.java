@@ -106,6 +106,7 @@ class SplashScreenPanel extends JPanel
 		subMessageLabel.setFont(FontManager.getRunescapeSmallFont());
 		subMessageLabel.setForeground(subMessageLabel.getForeground().darker());
 		subMessageLabel.setHorizontalAlignment(JLabel.CENTER);
+		subMessageLabel.setBorder(new EmptyBorder(0, 10, 0, 10));
 		
 		c.weighty = 1;
 		this.add(subMessageLabel, c);
