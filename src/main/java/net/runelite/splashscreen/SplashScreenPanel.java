@@ -25,6 +25,7 @@
 package net.runelite.splashscreen;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -43,9 +44,11 @@ import net.runelite.splashscreen.util.SwingUtil;
 class SplashScreenPanel extends JPanel
 {
 	private static final BufferedImage TRANSPARENT_LOGO = SwingUtil.loadImage("runelite_transparent.png");
+	private static final Dimension VERSION_SIZE = new Dimension(RuneLiteSplashScreen.FRAME_SIZE.width, 40);
 
 	private final JProgressBar bar = new JProgressBar(0, 100);
 	private final JLabel messageLabel = new JLabel("Loading...");
+	private final JLabel subMessageActionLabel = new JLabel();
 	private final JLabel subMessageLabel = new JLabel();
 
 	SplashScreenPanel(final String versionString)
@@ -59,7 +62,7 @@ class SplashScreenPanel extends JPanel
 		c.weightx = 1;
 		c.gridx = 0;
 		c.gridy = 0;
-		c.ipady = 5;
+		c.ipady = 25;
 
 		// Logo
 		final ImageIcon transparentLogo = new ImageIcon();
@@ -68,23 +71,14 @@ class SplashScreenPanel extends JPanel
 			transparentLogo.setImage(TRANSPARENT_LOGO.getScaledInstance(128, 128, Image.SCALE_SMOOTH));
 		}
 		final JLabel logo = new JLabel(transparentLogo);
-		logo.setBorder(new EmptyBorder(35, 0, 0, 0));
+		logo.setBorder(new EmptyBorder(15, 0, 0, 0));
 		this.add(logo, c);
 		c.gridy++;
 
-		// runelite title
-		final JLabel title = new JLabel("RuneLite");
-		title.setFont(FontManager.getRunescapeFont());
-		title.setHorizontalAlignment(JLabel.CENTER);
-		this.add(title, c);
-		c.gridy++;
-
-		// version
-		final JLabel version = new JLabel(versionString);
-		version.setForeground(Color.LIGHT_GRAY);
-		version.setFont(FontManager.getRunescapeSmallFont());
-		version.setHorizontalAlignment(JLabel.CENTER);
-		this.add(version, c);
+		// main message
+		messageLabel.setFont(FontManager.getRunescapeFont());
+		messageLabel.setHorizontalAlignment(JLabel.CENTER);
+		this.add(messageLabel, c);
 		c.gridy++;
 
 		// progressbar
@@ -98,19 +92,38 @@ class SplashScreenPanel extends JPanel
 		this.add(bar, progressConstraints);
 		c.gridy++;
 
-		// main message
-		messageLabel.setFont(FontManager.getRunescapeSmallFont());
-		messageLabel.setHorizontalAlignment(JLabel.CENTER);
-		this.add(messageLabel, c);
+		// alternate message action
+		subMessageActionLabel.setFont(FontManager.getRunescapeSmallFont());
+		subMessageActionLabel.setForeground(subMessageLabel.getForeground().darker());
+		subMessageActionLabel.setHorizontalAlignment(JLabel.CENTER);
+
+		c.anchor = GridBagConstraints.NORTH;
+		c.ipady = 15;
+		this.add(subMessageActionLabel, c);
 		c.gridy++;
 
 		// alternate message
 		subMessageLabel.setFont(FontManager.getRunescapeSmallFont());
 		subMessageLabel.setForeground(subMessageLabel.getForeground().darker());
 		subMessageLabel.setHorizontalAlignment(JLabel.CENTER);
-		c.anchor = GridBagConstraints.NORTH;
+		
 		c.weighty = 1;
 		this.add(subMessageLabel, c);
 		c.gridy++;
+
+		// version
+		final JLabel version = new JLabel(versionString);
+		version.setFont(FontManager.getRunescapeSmallFont());
+		version.setHorizontalAlignment(JLabel.CENTER);
+		version.setForeground(new Color(136, 136, 136));
+		version.setBackground(new Color(39, 39, 39));
+		version.setOpaque(true);
+		version.setPreferredSize(VERSION_SIZE);
+		version.setMinimumSize(VERSION_SIZE);
+
+		c.anchor = GridBagConstraints.PAGE_END;
+		c.weighty = 0;
+		c.ipady = 0;
+		this.add(version, c);
 	}
 }

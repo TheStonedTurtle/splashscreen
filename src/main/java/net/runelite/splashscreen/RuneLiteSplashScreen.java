@@ -43,7 +43,7 @@ import net.runelite.splashscreen.util.SwingUtil;
 @Slf4j
 public class RuneLiteSplashScreen extends JFrame
 {
-	static final Dimension FRAME_SIZE = new Dimension(200, 275);
+	static final Dimension FRAME_SIZE = new Dimension(200, 350);
 	private static final BufferedImage LOGO = SwingUtil.loadImage("runelite.png");
 
 	@Getter
@@ -68,7 +68,7 @@ public class RuneLiteSplashScreen extends JFrame
 		this.setLayout(new BorderLayout());
 		this.setUndecorated(true);
 		this.setIconImage(LOGO);
-		this.setShape(new RoundRectangle2D.Double(0, 0, FRAME_SIZE.width, FRAME_SIZE.height, 15, 15));
+		this.setShape(new RoundRectangle2D.Double(0, 0, FRAME_SIZE.width, FRAME_SIZE.height, 20, 20));
 
 		panel = new SplashScreenPanel(versionText);
 		this.setContentPane(panel);
@@ -93,11 +93,20 @@ public class RuneLiteSplashScreen extends JFrame
 		panel.repaint();
 	}
 
-	public void setSubMessage(final String msg)
+	public void setSubMessage(final String action)
 	{
+		setSubMessage(action, null);
+	}
+
+	public void setSubMessage(final String action, final String msg)
+	{
+		final JLabel actionLabel = panel.getSubMessageActionLabel();
+		actionLabel.setText(action);
+		actionLabel.revalidate();
+		actionLabel.repaint();
+
 		final JLabel label = panel.getSubMessageLabel();
 		label.setText(msg);
-
 		label.revalidate();
 		label.repaint();
 	}
@@ -118,7 +127,7 @@ public class RuneLiteSplashScreen extends JFrame
 		final JProgressBar bar = panel.getBar();
 		bar.setValue(actualPercent);
 
-		setSubMessage("Downloading " + filename + "...");
+		setSubMessage("Downloading", filename);
 
 		panel.revalidate();
 		panel.repaint();
