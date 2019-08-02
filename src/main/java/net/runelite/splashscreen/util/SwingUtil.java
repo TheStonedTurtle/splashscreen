@@ -66,16 +66,15 @@ public class SwingUtil
 		UIManager.put("OptionPane.background", DARKER_GRAY_COLOR);
 		UIManager.put("OptionPane.messageForeground", Color.WHITE);
 
-		// Set default font to RuneScape UF
+		// Default all fonts to RuneScape font
 		final FontUIResource f = new FontUIResource(FontManager.getRunescapeFont());
 		final Enumeration keys = UIManager.getDefaults().keys();
 
 		while (keys.hasMoreElements())
 		{
 			final Object key = keys.nextElement();
-			final Object value = UIManager.get(key);
 
-			if (value instanceof FontUIResource)
+			if (UIManager.get(key) instanceof FontUIResource)
 			{
 				UIManager.put(key, f);
 			}

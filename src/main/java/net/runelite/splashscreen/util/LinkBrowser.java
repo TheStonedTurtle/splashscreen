@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2019, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +38,7 @@ import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Utility class used for browser navigation
+ * Utility class used for browser navigation and opening Files
  */
 @Slf4j
 public class LinkBrowser
@@ -129,7 +130,7 @@ public class LinkBrowser
 	}
 
 	/**
-	 * Tries to open the specified {@code file} in the systems default text editor. If we fail to open the file
+	 * Tries to open the specified {@code File} with the systems default text editor. If operation fails
 	 * an error message is displayed with the option to copy the absolute file path to clipboard.
 	 * @param file the File instance of the log file
 	 * @return did the file open successfully?

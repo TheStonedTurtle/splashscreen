@@ -37,8 +37,8 @@ import javax.swing.JProgressBar;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.splashscreen.util.SwingUtil;
 import net.runelite.splashscreen.util.LinkBrowser;
+import net.runelite.splashscreen.util.SwingUtil;
 
 @Slf4j
 public class RuneLiteSplashScreen extends JFrame
@@ -116,7 +116,6 @@ public class RuneLiteSplashScreen extends JFrame
 		final int actualPercent = (int) (percent + progressStartingPercent);
 
 		final JProgressBar bar = panel.getBar();
-		// bar starts at 25%
 		bar.setValue(actualPercent);
 
 		setSubMessage("Downloading " + filename + "...");
