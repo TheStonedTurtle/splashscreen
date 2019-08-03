@@ -37,7 +37,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.EmptyBorder;
 import lombok.Getter;
-import net.runelite.splashscreen.util.FontManager;
 import net.runelite.splashscreen.util.SwingUtil;
 
 @Getter
@@ -76,7 +75,7 @@ class SplashScreenPanel extends JPanel
 		c.gridy++;
 
 		// main message
-		messageLabel.setFont(FontManager.getRunescapeFont());
+		messageLabel.setFont(SwingUtil.RUNESCAPE_FONT);
 		messageLabel.setHorizontalAlignment(JLabel.CENTER);
 		this.add(messageLabel, c);
 		c.gridy++;
@@ -93,7 +92,7 @@ class SplashScreenPanel extends JPanel
 		c.gridy++;
 
 		// alternate message action
-		subMessageActionLabel.setFont(FontManager.getRunescapeSmallFont());
+		subMessageActionLabel.setFont(SwingUtil.RUNESCAPE_FONT_SMALL);
 		subMessageActionLabel.setForeground(subMessageLabel.getForeground().darker());
 		subMessageActionLabel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -103,7 +102,7 @@ class SplashScreenPanel extends JPanel
 		c.gridy++;
 
 		// alternate message
-		subMessageLabel.setFont(FontManager.getRunescapeSmallFont());
+		subMessageLabel.setFont(SwingUtil.RUNESCAPE_FONT_SMALL);
 		subMessageLabel.setForeground(subMessageLabel.getForeground().darker());
 		subMessageLabel.setHorizontalAlignment(JLabel.CENTER);
 		subMessageLabel.setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -114,7 +113,7 @@ class SplashScreenPanel extends JPanel
 
 		// version
 		final JLabel version = new JLabel(versionString);
-		version.setFont(FontManager.getRunescapeSmallFont());
+		version.setFont(SwingUtil.RUNESCAPE_FONT_SMALL);
 		version.setHorizontalAlignment(JLabel.CENTER);
 		version.setForeground(new Color(136, 136, 136));
 		version.setBackground(new Color(39, 39, 39));

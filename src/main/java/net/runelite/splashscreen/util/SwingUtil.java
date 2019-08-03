@@ -26,6 +26,7 @@ package net.runelite.splashscreen.util;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -45,6 +46,25 @@ public class SwingUtil
 	/* The orange color used for the branding's accents, with lowered opacity */
 	private static final Color BRAND_ORANGE_TRANSPARENT = new Color(220, 138, 0, 120);
 	private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
+
+	public static Font RUNESCAPE_FONT;
+	public static Font RUNESCAPE_FONT_SMALL;
+	static
+	{
+		try
+		{
+			RUNESCAPE_FONT = Font.createFont(Font.TRUETYPE_FONT,
+				SwingUtil.class.getResourceAsStream("runescape.ttf"))
+				.deriveFont(Font.PLAIN, 16);
+			RUNESCAPE_FONT_SMALL = Font.createFont(Font.TRUETYPE_FONT,
+				SwingUtil.class.getResourceAsStream("runescape_small.ttf"))
+				.deriveFont(Font.PLAIN, 16);
+		}
+		catch (Exception e)
+		{
+			log.warn("Error loading fonts", e);
+		}
+	}
 
 	/**
 	 * Safely sets Swing theme
@@ -67,7 +87,7 @@ public class SwingUtil
 		UIManager.put("OptionPane.messageForeground", Color.WHITE);
 
 		// Default all fonts to RuneScape font
-		final FontUIResource f = new FontUIResource(FontManager.getRunescapeFont());
+		final FontUIResource f = new FontUIResource(RUNESCAPE_FONT);
 		final Enumeration keys = UIManager.getDefaults().keys();
 
 		while (keys.hasMoreElements())
