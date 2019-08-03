@@ -26,7 +26,6 @@ package net.runelite.splashscreen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.JComponent;
@@ -68,7 +67,6 @@ public class RuneLiteSplashScreen extends JFrame
 		this.setLayout(new BorderLayout());
 		this.setUndecorated(true);
 		this.setIconImage(LOGO);
-		this.setShape(new RoundRectangle2D.Double(0, 0, FRAME_SIZE.width, FRAME_SIZE.height, 20, 20));
 
 		panel = new SplashScreenPanel(versionText);
 		this.setContentPane(panel);
