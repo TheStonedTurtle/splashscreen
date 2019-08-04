@@ -25,7 +25,6 @@
  */
 package net.runelite.splashscreen.util;
 
-import com.google.common.base.Strings;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -53,7 +52,7 @@ public class LinkBrowser
 	 */
 	public static boolean browse(final String url)
 	{
-		if (Strings.isNullOrEmpty(url))
+		if (url == null || url.length() == 0)
 		{
 			return false;
 		}
