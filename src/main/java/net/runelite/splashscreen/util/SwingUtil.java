@@ -42,10 +42,13 @@ import net.runelite.splashscreen.RuneLiteSplashScreen;
 public class SwingUtil
 {
 	/* The orange color used for the branding's accents */
-	private static final Color BRAND_ORANGE = new Color(220, 138, 0);
+	public static final Color BRAND_ORANGE = new Color(220, 138, 0);
 	/* The orange color used for the branding's accents, with lowered opacity */
-	private static final Color BRAND_ORANGE_TRANSPARENT = new Color(220, 138, 0, 120);
-	private static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
+	public static final Color BRAND_ORANGE_TRANSPARENT = new Color(220, 138, 0, 120);
+	public static final Color DARKER_GRAY_COLOR = new Color(30, 30, 30);
+	/* The background color of the scrollbar's track */
+	public static final Color SCROLL_TRACK_COLOR = new Color(25, 25, 25);
+	public static final Color MEDIUM_GRAY_COLOR = new Color(77, 77, 77);
 
 	public static Font RUNESCAPE_FONT;
 	public static Font RUNESCAPE_FONT_SMALL;
@@ -63,41 +66,6 @@ public class SwingUtil
 		catch (Exception e)
 		{
 			log.warn("Error loading fonts", e);
-		}
-	}
-
-	/**
-	 * Safely sets Swing theme
-	 */
-	public static void setTheme()
-	{
-		UIManager.put("ProgressBar.background", BRAND_ORANGE_TRANSPARENT.darker());
-		UIManager.put("ProgressBar.foreground", BRAND_ORANGE);
-		UIManager.put("ProgressBar.selectionBackground", BRAND_ORANGE);
-		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
-		UIManager.put("ProgressBar.border", new EmptyBorder(0, 0, 0, 0));
-		UIManager.put("ProgressBar.verticalSize", new Dimension(12, 10));
-		UIManager.put("ProgressBar.horizontalSize", new Dimension(10, 12));
-		UIManager.put("ProgressBarUI", BasicProgressBarUI.class.getName());
-		UIManager.put("Panel.background", DARKER_GRAY_COLOR);
-		UIManager.put("Panel.foreground", Color.WHITE);
-		UIManager.put("Label.background", DARKER_GRAY_COLOR);
-		UIManager.put("Label.foreground", Color.WHITE);
-		UIManager.put("OptionPane.background", DARKER_GRAY_COLOR);
-		UIManager.put("OptionPane.messageForeground", Color.WHITE);
-
-		// Default all fonts to RuneScape font
-		final FontUIResource f = new FontUIResource(RUNESCAPE_FONT);
-		final Enumeration keys = UIManager.getDefaults().keys();
-
-		while (keys.hasMoreElements())
-		{
-			final Object key = keys.nextElement();
-
-			if (UIManager.get(key) instanceof FontUIResource)
-			{
-				UIManager.put(key, f);
-			}
 		}
 	}
 
