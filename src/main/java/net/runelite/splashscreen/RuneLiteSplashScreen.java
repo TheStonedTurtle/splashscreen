@@ -26,8 +26,8 @@ package net.runelite.splashscreen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.io.File;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -43,7 +43,6 @@ import net.runelite.splashscreen.util.SwingUtil;
 public class RuneLiteSplashScreen extends JFrame
 {
 	static final Dimension FRAME_SIZE = new Dimension(600, 350);
-	private static final BufferedImage LOGO = SwingUtil.loadImage("runelite.png");
 
 	@Getter
 	private final MessagePanel messagePanel = new MessagePanel();
@@ -66,7 +65,7 @@ public class RuneLiteSplashScreen extends JFrame
 		this.setSize(FRAME_SIZE);
 		this.setLayout(new BorderLayout());
 		this.setUndecorated(true);
-		this.setIconImage(LOGO);
+		this.setIconImage(SwingUtil.LOGO);
 
 		final JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -137,16 +136,12 @@ public class RuneLiteSplashScreen extends JFrame
 		final String message = "<html><div style='text-align: center;'>" +
 			"Your RuneLite launcher version is outdated<br/>" +
 			"Please visit runelite.net to download the updated version</div></html>";
-		final Object[] buttons = new Object[]{"Visit runelite.net", "Okay"};
+		final JButton[] buttons = new JButton[]{
+			SwingUtil.createFlatButton("Visit runelite.net", JOptionPane.YES_OPTION),
+			SwingUtil.createFlatButton("Okay", JOptionPane.NO_OPTION)
+		};
 
-		final int result = JOptionPane.showOptionDialog(parent,
-			message,
-			"Outdated launcher",
-			JOptionPane.YES_NO_OPTION,
-			JOptionPane.ERROR_MESSAGE,
-			null,
-			buttons,
-			buttons[1]);
+		final int result = SwingUtil.showRuneLiteOptionPane(parent, message, JOptionPane.YES_NO_OPTION, buttons);
 
 		if (result == JOptionPane.YES_OPTION)
 		{
@@ -159,17 +154,19 @@ public class RuneLiteSplashScreen extends JFrame
 		errorMessage(messagePanel, message, logFile);
 	}
 
-	public static void errorMessage(final JComponent parent, final String msg, final File logFile)
+	public static void errorMessage(final JComponent parent, String msg, final File logFile)
 	{
-		final Object[] buttons = new Object[]{"View log file", "Okay"};
-		final int result = JOptionPane.showOptionDialog(parent,
-			msg,
-			"RuneLite Error",
-			JOptionPane.YES_NO_OPTION,
-			JOptionPane.ERROR_MESSAGE,
-			null,
-			buttons,
-			buttons[1]);
+		final JButton[] buttons = new JButton[]{
+			SwingUtil.createFlatButton("View log file", JOptionPane.YES_OPTION),
+			SwingUtil.createFlatButton("Okay", JOptionPane.NO_OPTION)
+		};
+
+		if (!msg.startsWith("<html>"))
+		{
+			msg = "<html><div style='text-align:center'>" + msg + "</div></html>";
+		}
+
+		final int result = SwingUtil.showRuneLiteOptionPane(parent, msg, JOptionPane.YES_NO_OPTION, buttons);
 
 		if (result == JOptionPane.YES_OPTION)
 		{
